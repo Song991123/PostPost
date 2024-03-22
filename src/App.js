@@ -52,7 +52,7 @@ function App() {
                           "파이썬 독학파이썬 독학파이썬 독학파이썬 독학파이썬 독학파이썬 독학파이썬 독학파이썬 독학파이썬 독학파이썬 독학파이썬 독학파이썬 독학", 
                           "가을 맛집 추천가을 맛집 추천가을 맛집 추천가을 맛집 추천가을 맛집 추천가을 맛집 추천가을 맛집 추천가을 맛집 추천"];
       // 데이터 불러오기
-      for (var i in DBTitle){
+      for (let i in DBTitle){
         const newTitle = new Post(DBTitle[i], DBLike[i], DBContent[i]);
         title.push(newTitle);
       }
