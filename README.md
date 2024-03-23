@@ -10,3 +10,4 @@
 * [[React] 기초 문법 2일차](https://www.notion.so/React-2-b3c6af823a4b41a29b6fe6e72c4f7e02?pvs=21)
 * [[React] 기초 문법3일차](https://www.notion.so/React-3-bbb75b6b729f4df4b1e114443dd47d9f?pvs=21) 
 * [[React] 기초 문법4일차 - 프로젝트 고치기1](https://www.notion.so/React-4-1-267861b377344b60b2630e72b091b5f6?pvs=21)
+* [[React] 기초 문법5일차 - 프로젝트 고치기2](https://www.notion.so/marenblog/React-5-2-5448f01597f34e07ace5f0070c35692d?pvs=4)
