@@ -193,22 +193,35 @@ textarea:focus {
   font-size: 16px;
   font-weight: 400;
 }
-.md-content__contents {
-  color: #000000;
-  text-align: left;
-  font-size: 16px;
-  font-weight: 400;
-  position: absolute;
+
+.md-content__contents{
   left: 57px;
   top: 85px;
   width: 80%;
   height: 67%;
-  overflow: scroll;
+  position: absolute;
+  color: #000000;
+  overflow-y: scroll;
   overflow-x: hidden;
+  scroll-behavior: smooth;
+  scrollbar-gutter:stable;
+  text-align: left;
   word-break:break-all;
   white-space: pre-wrap;
+  &::-webkit-scrollbar{
+    background-color: transparent;
+    width: 0px;
+  }
 }
-.md-content__contents::-webkit-scrollbar{display:none;}
+.md-content__contents:hover{
+  &::-webkit-scrollbar{
+    width: 5px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #000;
+    border-radius: 5px;
+  }
+}
 
 .md-content__exit-button {
   background: #000000;

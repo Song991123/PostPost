@@ -30,10 +30,11 @@ function App() {
   /* ------------------------------ CLASS ------------------------------- */
 
   class Post {
-    constructor(Name, Like, Content) {
+    constructor(Name, Like, Content, Date) {
         this.Name    = Name;
         this.Like    = Like;
         this.Content = Content;
+        this.Date    = Date;
     }
   }
   /* ------------------------------ SET ------------------------------- */
@@ -46,14 +47,15 @@ function App() {
   function constructorTitle(){
     if(onLoad){
       // 임시 데이터들
-      const DBTitle = ['여자 코트 추천', '파이썬 독학', '가을 맛집 추천'];
-      const DBLike  = [0, 1, 3];
+      const DBTitle   = ['여자 코트 추천', '파이썬 독학', '가을 맛집 추천'];
+      const DBLike    = [0, 1, 3];
       const DBContent = ["여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천여자코트 추천", 
                           "파이썬 독학파이썬 독학파이썬 독학파이썬 독학파이썬 독학파이썬 독학파이썬 독학파이썬 독학파이썬 독학파이썬 독학파이썬 독학파이썬 독학", 
                           "가을 맛집 추천가을 맛집 추천가을 맛집 추천가을 맛집 추천가을 맛집 추천가을 맛집 추천가을 맛집 추천가을 맛집 추천"];
+      const DBDate    = ['2024-03-17', '2024-03-17', '2024-03-17'];
       // 데이터 불러오기
       for (let i in DBTitle){
-        const newTitle = new Post(DBTitle[i], DBLike[i], DBContent[i]);
+        const newTitle = new Post(DBTitle[i], DBLike[i], DBContent[i], DBDate[i]);
         title.push(newTitle);
       }
       setOnLoad(0);
@@ -94,7 +96,7 @@ function App() {
   }
 
   function writePost(){
-    const newTitle = new Post(inputValue, 0, textareaValue);
+    const newTitle = new Post(inputValue, 0, textareaValue, new Date());
     title.push(newTitle);
     setTitle([...title]);
     SetInputValue('');
@@ -107,7 +109,15 @@ function App() {
   function modalControl(modalState){
     setModal(modalState);
   }
-
+  function ParsingDate(date){
+    let newDate = new Date(date);
+    
+    let year  = newDate.getFullYear().toString().substring(2,4);
+    let month = newDate.getMonth()+1;
+    let day   = newDate.getDate();
+    
+    return `${year}년 ${month}월 ${day}일`;
+  }
   /* --------------------------------------------------------------------- */
 
   return (
@@ -142,29 +152,30 @@ function App() {
         </div>
       </div>
       
-      {
-        title.map(function(titleName, titleNumber){
-          return(
-            <div className='list'>
-              <div className='post-title-bar'>
-                <h4 className='title-name' onClick={() => onClickTitle(titleNumber)}>{ titleName.Name } </h4> 
-                <span className='like-info'><span onClick={() => onClickSetLike(titleNumber)}>👍</span> { titleName.Like }</span>
-                {
-                  titleName.Name.includes('코트 추천') ?  <span className="genderBtn" onClick={() => onClicksetTitle(titleNumber)}>{ EditTitleBtn }</span> : null
-                }
-                <span className='deleteBtn' onClick={() => DeletePost(titleNumber)}>Delete <FontAwesomeIcon icon={ faTrashCan }></FontAwesomeIcon></span>
+      <div>
+        {
+          title.map(function(titleName, titleNumber){
+            return(
+              <div className='list'>
+                <div className='post-title-bar'>
+                  <h4 className='title-name' onClick={() => onClickTitle(titleNumber)}>{ titleName.Name } </h4> 
+                  <span className='like-info'><span onClick={() => onClickSetLike(titleNumber)}>👍</span> { titleName.Like }</span>
+                  {
+                    titleName.Name.includes('코트 추천') ?  <span className="genderBtn" onClick={() => onClicksetTitle(titleNumber)}>{ EditTitleBtn }</span> : null
+                  }
+                  <span className='deleteBtn' onClick={() => DeletePost(titleNumber)}>Delete <FontAwesomeIcon icon={ faTrashCan }></FontAwesomeIcon></span>
+                </div>
+                <p>{ ParsingDate(titleName.Date) }</p>
               </div>
-              <p>3월 17일 발행</p>
-            </div>
-          )
-        })
-      }
-      
+            )
+          })
+        }
+      </div>
       <div className='SortingBar'>
         <span className='titleSortBtn' onClick={onClickSort}>가나다순 정렬</span>
       </div>
       {
-        modal ? <Modal title={title[modalIndex]} modalControl={modalControl}></Modal> : null
+        modal ? <Modal title={title[modalIndex]} modalControl={modalControl} ParsingDate={ParsingDate}></Modal> : null
       }
     </div>
     
@@ -182,9 +193,11 @@ function Modal(props){
           <div className='md-content__title-bar'>
             <div className="md-content__title-name">{PostInfo.Name}</div>
             <div className="md-content__like-info">👍 {PostInfo.Like}</div>
-            <div className="md-content__date">3월 17일</div>
+            <div className="md-content__date">{props.ParsingDate(PostInfo.Date)}</div>
           </div>
-          <div className="md-content__contents">{PostInfo.Content}</div>
+          <div className='md-content__contents'>
+            <div>{PostInfo.Content}</div>
+          </div>
           <div className="md-content__exit-button" onClick={() => {props.modalControl(false)}}>
             닫기
           </div>
