@@ -1,5 +1,5 @@
 ## ✨PostPost!✨ <img src="https://img.shields.io/badge/react-20232A?style=flat&logo=React&logoColor=61DAFB"/> 
-📅 2024.03.17 ~ 미완 <br>
+📅 2024.03.17 ~ 미완(학업으로 인해 일시 중단) <br>
 📎 https://song991123.github.io/PostPost/
 <hr>
 코딩애플 강의를 보고 따라 만들었던 기초 문법용 프로젝트에 이것저것 업그레이드해본 프로젝트.
